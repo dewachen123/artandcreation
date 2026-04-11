@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | TalentHub</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Gallery Page Specific Styles */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: var(--transition);
+            color: #fff;
+            text-align: center;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-overlay h3 { color: #fff; margin-bottom: 5px; font-size: 1.2rem; }
+        .gallery-overlay p { color: #cbd5e1; font-size: 0.9rem; margin-bottom: 15px; }
+
+        /* Filter Toolbar */
+        .filter-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 20px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .filter-group { display: flex; gap: 10px; }
+        .filter-btn {
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: #f1f5f9;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        /* Modal / Lightbox */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+        }
+        .modal.active { display: flex; }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        .modal-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+        .modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+        .modal-info {
+            color: #fff;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .artist-marquee {
+            background: #f8fafc;
+            padding: 40px 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 60px;
+        }
+        .artist-marquee-content {
+            display: flex;
+            gap: 40px;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .artist-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            flex-shrink: 0;
+        }
+        .artist-badge img { width: 30px; height: 30px; border-radius: 50%; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">TalentHub</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Gallery Hero -->
+        <section class="hero" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+            <div class="container">
+                <span style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Showcase</span>
+                <h1 style="margin-top: 10px;">The Creative Archive</h1>
+                <p>Discover a curated collection of digital art, photography, and design from the APU community.</p>
+            </div>
+        </section>
+
+        <!-- Artist Marquee -->
+        <div class="artist-marquee">
+            <div class="artist-marquee-content">
+                <div class="artist-badge"><img src="c:\Users\Acer.LAPTOP-O8A0L826\OneDrive\Pictures\Screenshots\Screenshot 2026-04-11 124413.png" alt=""> <span>Aryan Singh</span></div>
+                <div class="artist-badge"><img src="c:\Users\Acer.LAPTOP-O8A0L826\OneDrive\Pictures\Screenshots\Screenshot 2026-04-11 124159.png" alt=""> <span>Shubham Niraula</span></div>
+                <div class="artist-badge"><img src="c:\Users\Acer.LAPTOP-O8A0L826\OneDrive\Pictures\Screenshots\Screenshot 2026-04-11 124438.png" alt=""> <span>Nischit Tulachan</span></div>
+                <div class="artist-badge"><img src="c:\Users\Acer.LAPTOP-O8A0L826\Downloads\dikshen holaaa.jpeg" alt=""> <span>Dikshen Sherpa</span></div>
+                <div class="artist-badge"><img src="https://i.pravatar.cc/150?u=5" alt=""> <span>Maya Devi</span></div>
+                <!-- Duplicate for loop -->
+                <div class="artist-badge"><img src="c:\Users\Acer.LAPTOP-O8A0L826\OneDrive\Pictures\Screenshots\Screenshot 2026-04-11 124413.png" alt=""> <span>Aryan Singh</span></div>
+                <div class="artist-badge"><img src="c:\Users\Acer.LAPTOP-O8A0L826\OneDrive\Pictures\Screenshots\Screenshot 2026-04-11 124129.png" alt=""> <span>Shubham Niraula</span></div>
+                <div class="artist-badge"><img src="c:\Users\Acer.LAPTOP-O8A0L826\OneDrive\Pictures\Screenshots\Screenshot 2026-04-11 124438.png" alt=""> <span>Nischit Tulachan</span></div>
+                <div class="artist-badge"><img src="c:\Users\Acer.LAPTOP-O8A0L826\Downloads\dikshen holaaa.jpeg" alt=""> <span>Dikshen Sherpa</span></div>
+                <div class="artist-badge"><img src="https://i.pravatar.cc/150?u=5" alt=""> <span>Maya Devi</span></div>
+            </div>
+        </div>
+
+        <section class="gallery">
+            <div class="container">
+                <!-- Filter Toolbar -->
+                <div class="filter-toolbar">
+                    <div class="filter-group">
+                        <button class="filter-btn active" data-filter="all">All Works</button>
+                        <button class="filter-btn" data-filter="digital">Digital Art</button>
+                        <button class="filter-btn" data-filter="photography">Photography</button>
+                        <button class="filter-btn" data-filter="design">Graphic Design</button>
+                    </div>
+                    <div class="view-options">
+                        <select style="padding: 8px 15px; border-radius: 10px; border: 1px solid #e2e8f0;">
+                            <option>Sort by: Newest</option>
+                            <option>Sort by: Popular</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Gallery Grid -->
+                <div class="gallery-container">
+                    <div class="gallery-item" data-category="digital" onclick="openModal('https://images.unsplash.com/photo-1541963463532-d68292c34b19', 'Digital Dreams', 'Aryan Singh')">
+                        <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&w=800" alt="Work 1">
+                        <div class="gallery-overlay">
+                            <h3>Digital Dreams</h3>
+                            <p>Aryan Singh</p>
+                            <span class="btn btn-primary" style="padding: 5px 15px; font-size: 0.8rem;">View Details</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="photography" onclick="openModal('https://images.unsplash.com/photo-1513364776144-60967b0f800f', 'Nature Canvas', 'Nischit Tulachan')">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800" alt="Work 2">
+                        <div class="gallery-overlay">
+                            <h3>Nature Canvas</h3>
+                            <p>Nischit Tulachan</p>
+                            <span class="btn btn-primary" style="padding: 5px 15px; font-size: 0.8rem;">View Details</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="design" onclick="openModal('https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b', 'Abstract Flow', 'Shubham Niraula')">
+                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=800" alt="Work 3">
+                        <div class="gallery-overlay">
+                            <h3>Abstract Flow</h3>
+                            <p>Shubham Niraula</p>
+                            <span class="btn btn-primary" style="padding: 5px 15px; font-size: 0.8rem;">View Details</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="digital" onclick="openModal('https://images.unsplash.com/photo-1550684848-fac1c5b4e853', 'Cyber Punk', 'Dikshen Sherpa')">
+                        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800" alt="Work 4">
+                        <div class="gallery-overlay">
+                            <h3>Cyber Punk</h3>
+                            <p>Dikshen Sherpa</p>
+                            <span class="btn btn-primary" style="padding: 5px 15px; font-size: 0.8rem;">View Details</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="photography" onclick="openModal('https://images.unsplash.com/photo-1516035069371-29a1b244cc32', 'City Lights', 'Maya Devi')">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=800" alt="Work 5">
+                        <div class="gallery-overlay">
+                            <h3>City Lights</h3>
+                            <p>Maya Devi</p>
+                            <span class="btn btn-primary" style="padding: 5px 15px; font-size: 0.8rem;">View Details</span>
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-category="design" onclick="openModal('https://images.unsplash.com/photo-1558655146-d09347e92766', 'Minimalist Poster', 'Aryan Singh')">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=800" alt="Work 6">
+                        <div class="gallery-overlay">
+                            <h3>Minimalist Poster</h3>
+                            <p>Aryan Singh</p>
+                            <span class="btn btn-primary" style="padding: 5px 15px; font-size: 0.8rem;">View Details</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 60px;">
+                    <button class="btn btn-primary">Load More Works</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Lightbox -->
+    <div class="modal" id="galleryModal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <img id="modalImg" src="" alt="">
+            <div class="modal-info">
+                <h2 id="modalTitle" style="color: #fff;"></h2>
+                <p id="modalArtist" style="color: var(--accent-color);"></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="index.html" class="footer-logo">TalentHub</a>
+                    <p style="color: #9ca3af; max-width: 300px;">Empowering student creativity at Asia Pacific University of Technology and Innovation.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">Join Us</a></li>
+                        <li><a href="#">Artist Guidelines</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: #9ca3af;">Instagram</a>
+                        <a href="#" style="color: #9ca3af;">LinkedIn</a>
+                        <a href="#" style="color: #9ca3af;">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TalentHub. Section_A16_Group_G. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Modal Logic
+        const modal = document.getElementById('galleryModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalArtist = document.getElementById('modalArtist');
+
+        function openModal(src, title, artist) {
+            modal.classList.add('active');
+            modalImg.src = src + '?auto=format&fit=crop&w=1200';
+            modalTitle.innerText = title;
+            modalArtist.innerText = 'by ' + artist;
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal on click outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    </script>
+</body>
+</html>

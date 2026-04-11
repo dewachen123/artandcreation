@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalentHub | Creative Student Community</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Home Specific Styles */
+        .stats-section {
+            background: #fff;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        .stat-card {
+            padding: 30px;
+            border-radius: 20px;
+            background: #f8fafc;
+            transition: var(--transition);
+        }
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 10px;
+        }
+        .stat-label {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .feature-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+        .feature-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .feature-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        .feature-card:hover img {
+            transform: scale(1.1);
+        }
+        .feature-card:hover .feature-overlay {
+            opacity: 1;
+        }
+        .feature-overlay h3 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+        .feature-overlay p {
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">TalentHub</a>
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Where Creativity <br> Meets Community</h1>
+                <p>The premier digital ecosystem for student art and recreation organizations at Asia Pacific University of Technology and Innovation.</p>
+                <div class="hero-btns">
+                    <a href="gallery.html" class="btn btn-primary">Explore Gallery</a>
+                    <a href="about.html" class="btn" style="border: 1px solid #ccc; margin-left: 15px;">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="1500">0</span>
+                        <span class="stat-label">Active Members</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="450">0</span>
+                        <span class="stat-label">Artworks Published</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="85">0</span>
+                        <span class="stat-label">Events Hosted</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="12">0</span>
+                        <span class="stat-label">Student Clubs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Section -->
+        <section class="featured">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Featured Works</h2>
+                    <p>Handpicked creations from our talented community members.</p>
+                </div>
+                <div class="featured-grid">
+                    <div class="feature-card">
+                        <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?auto=format&fit=crop&w=800" alt="Featured Work 1">
+                        <div class="feature-overlay">
+                            <h3>Digital Dreams</h3>
+                            <p>by Aryan Singh</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=800" alt="Featured Work 2">
+                        <div class="feature-overlay">
+                            <h3>Abstract Reality</h3>
+                            <p>by Shubham Niraula</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800" alt="Featured Work 3">
+                        <div class="feature-overlay">
+                            <h3>Nature's Canvas</h3>
+                            <p>by Nischit Tulachan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta" style="background: var(--primary-color); color: #fff; text-align: center;">
+            <div class="container">
+                <h2 style="color: #fff; margin-bottom: 20px;">Ready to Showcase Your Talent?</h2>
+                <p style="color: #9ca3af; margin-bottom: 40px;">Join the TalentHub community today and connect with fellow creators.</p>
+                <a href="contact.html" class="btn btn-primary" style="background: var(--accent-color);">Get Started Now</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="index.html" class="footer-logo">TalentHub</a>
+                    <p style="color: #9ca3af; max-width: 300px;">Empowering student creativity at Asia Pacific University of Technology and Innovation.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">Join Us</a></li>
+                        <li><a href="#">Artist Guidelines</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: #9ca3af;">Instagram</a>
+                        <a href="#" style="color: #9ca3af;">LinkedIn</a>
+                        <a href="#" style="color: #9ca3af;">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TalentHub. Section_A16_Group_G. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

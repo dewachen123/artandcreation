@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | TalentHub</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* About Page Specific Styles */
+        .marquee {
+            background: var(--primary-color);
+            color: #fff;
+            padding: 20px 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+        .marquee-content span {
+            margin-right: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .story-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .story-img {
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        .team-card {
+            background: #fff;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid #f1f5f9;
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .team-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            object-fit: cover;
+            border: 4px solid #f1f5f9;
+        }
+        .team-card h3 {
+            margin-bottom: 5px;
+        }
+        .team-card p {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .team-social a {
+            color: #94a3b8;
+        }
+        .team-social a:hover {
+            color: var(--primary-color);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .mission-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            padding: 40px;
+            border-radius: 25px;
+            border-left: 5px solid var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">TalentHub</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- About Hero -->
+        <section class="hero" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);">
+            <div class="container">
+                <span style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Our Story</span>
+                <h1 style="margin-top: 10px;">Empowering the Next Generation of Creators</h1>
+                <p>TalentHub was born from a simple idea: that every student at APU deserves a stage to showcase their unique talents and a community to grow with.</p>
+            </div>
+        </section>
+
+        <!-- Marquee Section -->
+        <div class="marquee">
+            <div class="marquee-content">
+                <span>"TalentHub changed how I see art."</span>
+                <span>"The best community for creators."</span>
+                <span>"Collaborative, creative, and inspiring."</span>
+                <span>"A platform built by students, for students."</span>
+                <span>"Join the creative revolution at APU."</span>
+                <!-- Duplicate for seamless loop -->
+                <span>"TalentHub changed how I see art."</span>
+                <span>"The best community for creators."</span>
+                <span>"Collaborative, creative, and inspiring."</span>
+                <span>"A platform built by students, for students."</span>
+                <span>"Join the creative revolution at APU."</span>
+            </div>
+        </div>
+
+        <!-- Story Section -->
+        <section class="story">
+            <div class="container">
+                <div class="story-section">
+                    <div class="story-content">
+                        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Founded on Collaboration</h2>
+                        <p style="margin-bottom: 20px;">TalentHub is a front-end web platform designed to serve student art and recreation organizations at Asia Pacific University of Technology and Innovation. Built entirely with HTML5, CSS3, and vanilla JavaScript, the platform provides a space to showcase community work, coordinate activities, and foster peer collaboration.</p>
+                        <p>The project followed a mobile-first, progressive-enhancement approach and was validated across multiple browsers for accessibility and usability. Our mission is to dismantle disciplinary silos by enabling cross-pollination of ideas and collaborative projects beyond traditional academic departmental structures.</p>
+                    </div>
+                    <div class="story-img">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800" alt="Team collaborating">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission & Values -->
+        <section class="mission" style="background: #fff;">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Mission & Values</h2>
+                    <p>The principles that guide our community every day.</p>
+                </div>
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <h3>Democratizing Access</h3>
+                        <p>Equal visibility is afforded to all participants regardless of experience level or artistic background, ensuring everyone has a chance to be seen.</p>
+                    </div>
+                    <div class="mission-card">
+                        <h3>Community Cohesion</h3>
+                        <p>We prioritize community over competition, creating conditions for constructive criticism and mentorship through interaction.</p>
+                    </div>
+                    <div class="mission-card">
+                        <h3>Cross-Pollination</h3>
+                        <p>We encourage collaboration across different artistic disciplines, from visual arts to music and creative writing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team">
+            <div class="container">
+                <div class="section-title">
+                    <h2>The Creative Minds</h2>
+                    <p>Meet the team behind TalentHub - Section_A16_Group_G.</p>
+                </div>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <img src="c:\Users\Acer.LAPTOP-O8A0L826\Downloads\dikshen holaaa.jpeg" alt="Dikshen Sherpa" class="team-img">
+                        <h3>Dikshen Sherpa</h3>
+                        <p>Group Leader & Lead Architect</p>
+                        <div class="team-social">
+                            <a href="#">LinkedIn</a>
+                            <a href="https://github.com/dewachen123">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="c:\Users\Acer.LAPTOP-O8A0L826\OneDrive\Pictures\Screenshots\Screenshot 2026-04-11 124129.png" alt="Shubham Niraula" class="team-img">
+                        <h3>Shubham Niraula</h3>
+                        <p>Lead Developer</p>
+                        <div class="team-social">
+                            <a href="#">LinkedIn</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="c:\Users\Acer.LAPTOP-O8A0L826\OneDrive\Pictures\Screenshots\Screenshot 2026-04-11 124413.png" alt="Aryan Singh" class="team-img">
+                        <h3>Aryan Singh</h3>
+                        <p>UI/UX Designer</p>
+                        <div class="team-social">
+                            <a href="#">LinkedIn</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="team-card">
+                        <img src="c:\Users\Acer.LAPTOP-O8A0L826\OneDrive\Pictures\Screenshots\Screenshot 2026-04-11 124438.png" alt="Nischit Tulachan" class="team-img">
+                        <h3>Nischit Tulachan</h3>
+                        <p>Content Strategist</p>
+                        <div class="team-social">
+                            <a href="#">LinkedIn</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="index.html" class="footer-logo">TalentHub</a>
+                    <p style="color: #9ca3af; max-width: 300px;">Empowering student creativity at Asia Pacific University of Technology and Innovation.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">Join Us</a></li>
+                        <li><a href="#">Artist Guidelines</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: #9ca3af;">Instagram</a>
+                        <a href="#" style="color: #9ca3af;">LinkedIn</a>
+                        <a href="#" style="color: #9ca3af;">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TalentHub. Section_A16_Group_G. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

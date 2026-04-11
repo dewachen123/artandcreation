@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | TalentHub</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Events Page Specific Styles */
+        .filter-toolbar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        .filter-btn {
+            padding: 10px 25px;
+            border-radius: 50px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .event-card {
+            background: #fff;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid #f1f5f9;
+            display: flex;
+            flex-direction: column;
+        }
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .event-img {
+            position: relative;
+            height: 220px;
+        }
+        .event-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .date-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #fff;
+            padding: 10px 15px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .date-badge span {
+            display: block;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .date-badge .day { font-size: 1.5rem; }
+        .date-badge .month { font-size: 0.8rem; text-transform: uppercase; color: var(--accent-color); }
+
+        .event-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .event-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #f1f5f9;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #64748b;
+        }
+        .event-content h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        .event-info {
+            display: flex;
+            gap: 20px;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+        .event-footer {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid #f1f5f9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .newsletter {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #fff;
+            border-radius: 40px;
+            padding: 80px 40px;
+            text-align: center;
+            margin-top: 100px;
+        }
+        .newsletter h2 { color: #fff; margin-bottom: 20px; }
+        .newsletter p { color: #94a3b8; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+            gap: 10px;
+        }
+        .newsletter-form input {
+            flex-grow: 1;
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 1px solid #334155;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+        }
+        .newsletter-form button {
+            padding: 15px 35px;
+            border-radius: 50px;
+            background: var(--accent-color);
+            color: #fff;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">TalentHub</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.html" class="active">Events</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Events Hero -->
+        <section class="hero" style="background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);">
+            <div class="container">
+                <span style="color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Calendar</span>
+                <h1 style="margin-top: 10px;">Upcoming Creative Events</h1>
+                <p>From workshops and exhibitions to music festivals and networking nights.</p>
+            </div>
+        </section>
+
+        <!-- Events Listing -->
+        <section class="events-list">
+            <div class="container">
+                <div class="filter-toolbar">
+                    <button class="filter-btn active" data-filter="all">All Events</button>
+                    <button class="filter-btn" data-filter="workshop">Workshops</button>
+                    <button class="filter-btn" data-filter="exhibition">Exhibitions</button>
+                    <button class="filter-btn" data-filter="performance">Performances</button>
+                </div>
+
+                <div class="events-grid">
+                    <!-- Event 1 -->
+                    <div class="event-card" data-category="exhibition">
+                        <div class="event-img">
+                            <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800" alt="Event 1">
+                            <div class="date-badge">
+                                <span class="day">15</span>
+                                <span class="month">May</span>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <span class="event-tag">Exhibition</span>
+                            <h3>Annual Student Showcase</h3>
+                            <p style="color: #64748b; margin-bottom: 20px;">Experience the best creative works from our graduating class across all disciplines.</p>
+                            <div class="event-info">
+                                <span>📍 APU Main Hall</span>
+                                <span>⏰ 10:00 AM</span>
+                            </div>
+                            <div class="event-footer">
+                                <a href="#" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Register</a>
+                                <span style="color: #94a3b8; font-size: 0.8rem;">240 attending</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 2 -->
+                    <div class="event-card" data-category="workshop">
+                        <div class="event-img">
+                            <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800" alt="Event 2">
+                            <div class="date-badge">
+                                <span class="day">22</span>
+                                <span class="month">May</span>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <span class="event-tag">Workshop</span>
+                            <h3>Digital Art Masterclass</h3>
+                            <p style="color: #64748b; margin-bottom: 20px;">Learn advanced digital painting techniques from industry professionals.</p>
+                            <div class="event-info">
+                                <span>📍 Lab 402</span>
+                                <span>⏰ 02:00 PM</span>
+                            </div>
+                            <div class="event-footer">
+                                <a href="#" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Register</a>
+                                <span style="color: #94a3b8; font-size: 0.8rem;">45 attending</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Event 3 -->
+                    <div class="event-card" data-category="performance">
+                        <div class="event-img">
+                            <img src="https://images.unsplash.com/photo-1514525253361-bee8718a300c?auto=format&fit=crop&w=800" alt="Event 3">
+                            <div class="date-badge">
+                                <span class="day">05</span>
+                                <span class="month">Jun</span>
+                            </div>
+                        </div>
+                        <div class="event-content">
+                            <span class="event-tag">Performance</span>
+                            <h3>Acoustic Night</h3>
+                            <p style="color: #64748b; margin-bottom: 20px;">An evening of live music and spoken word performances by student artists.</p>
+                            <div class="event-info">
+                                <span>📍 Student Lounge</span>
+                                <span>⏰ 07:00 PM</span>
+                            </div>
+                            <div class="event-footer">
+                                <a href="#" class="btn btn-primary" style="padding: 8px 20px; font-size: 0.9rem;">Register</a>
+                                <span style="color: #94a3b8; font-size: 0.8rem;">120 attending</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="newsletter">
+                    <h2>Stay in the Loop</h2>
+                    <p>Subscribe to our newsletter to receive weekly updates on new events, workshops, and community news.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="index.html" class="footer-logo">TalentHub</a>
+                    <p style="color: #9ca3af; max-width: 300px;">Empowering student creativity at Asia Pacific University of Technology and Innovation.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#">Join Us</a></li>
+                        <li><a href="#">Artist Guidelines</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="color: #9ca3af;">Instagram</a>
+                        <a href="#" style="color: #9ca3af;">LinkedIn</a>
+                        <a href="#" style="color: #9ca3af;">Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 TalentHub. Section_A16_Group_G. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Specific Filtering for Events Page
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const eventCards = document.querySelectorAll('.event-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filter = btn.getAttribute('data-filter');
+
+                    eventCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'flex';
+                            setTimeout(() => card.style.opacity = '1', 10);
+                        } else {
+                            card.style.opacity = '0';
+                            setTimeout(() => card.style.display = 'none', 300);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
